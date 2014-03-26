@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+ <head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Usuality Casuality</title>
+  <meta name="author" content="Guilherme Lima">
+  <meta name="description" content="Teste de usabilidades com interfaces refinadas">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/screen.css" type="text/css">
+  <style>
+  #draggable, #draggable1, #draggable2, #draggable3 { cursor: move; border: 1px solid; height: inherit; position: relative; z-index: 12;}
+  #draggable {background: red;}
+  #draggable1 {background: blue;}
+  #draggable2 {background: green;}
+  #draggable3 {background: yellow;}
+  #containment-wrapper { width: 95%; height:490px; border:2px solid #ccc; padding: 10px;position: relative; z-index: 2;}
+  #droppable { width: 150px; height: 150px; padding: 0.5em; margin: 10px; border: 1px solid;position: absolute; right: 0; left: 0; margin: auto;}
+  h1 { clear: right;}
+  ul { list-style: none; float: left;}
+  li { display: block; width: 90px; height: 90px;margin: 0 10px 10px 0; background: #ccc; }
+  </style>
+</head>
+<body>
+ 
+<h1>Apartamentos:</h1>
+<div id="containment-wrapper">
+  <ul>
+    <li id="ha"><div  id="draggable" class="draggable"></div></li>
+    <li id="ha1"><div  id="draggable1" class="draggable"></div></li>
+    <li id="ha2"><div  id="draggable2" class="draggable"></div></li>
+    <li id="ha3"><div  id="draggable3" class="draggable"></div></li>
+    <li></li>
+  </ul>
+  <div id="droppable" class="ui-widget-header">
+
+  </div>
+</div>
+  
+  <script type="text/javascript" src="js/vendors/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="js/vendors/jquery-ui-1.10.4.custom.min.js"></script>
+  <script>
+  $(function() {
+
+
+    $("#draggable").draggable({ 
+      containment: "#containment-wrapper", 
+      scroll: false, 
+      revert: "invalid", 
+      start: function (event, ui) {
+
+      }
+    });
+        $("#draggable1").draggable({ 
+      containment: "#containment-wrapper", 
+      scroll: false, 
+      revert: "invalid", 
+      start: function (event, ui) {
+
+      }
+    });
+            $("#draggable2").draggable({ 
+      containment: "#containment-wrapper", 
+      scroll: false, 
+      revert: "invalid", 
+      start: function (event, ui) {
+
+      }
+    });
+                $("#draggable3").draggable({ 
+      containment: "#containment-wrapper", 
+      scroll: false, 
+      revert: "invalid", 
+      start: function (event, ui) {
+
+      }
+    });
+
+       
+    $( "#droppable" ).droppable({
+      drop: function( event, ui ) {
+            var dropped = ui.draggable;
+            var droppedOn = this;
+
+            if ($(droppedOn).children().length > 0) {
+              $(droppedOn).children('#draggable').detach().removeAttr( 'style' ).prependTo('#containment-wrapper li#ha');
+              $(droppedOn).children('#draggable1').detach().removeAttr( 'style' ).prependTo('#containment-wrapper li#ha1');
+              $(droppedOn).children('#draggable2').detach().removeAttr( 'style' ).prependTo('#containment-wrapper li#ha2');
+              $(droppedOn).children('#draggable3').detach().removeAttr( 'style' ).prependTo('#containment-wrapper li#ha3');
+            }
+
+            $(dropped).detach().css({top: 0,left: 0, bottom: 0, right: 0, width: '100%', height: '100%', 'z-index': 1}).prependTo($(droppedOn));
+        }
+
+    });
+
+  });
+  </script>  
+ </body>
+</html>
